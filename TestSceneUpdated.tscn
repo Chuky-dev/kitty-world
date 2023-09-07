@@ -2336,6 +2336,21 @@ transform = Transform3D(0.204301, 0, 0, 0, 0.204301, 0, 0, 0, 0.204301, 8.82168,
 [node name="plot4" parent="." instance=ExtResource("19_04lqs")]
 transform = Transform3D(0.204301, 0, 0, 0, 0.204301, 0, 0, 0, 0.204301, 9.09109, 1, 1.40154)
 
+[node name="plot5" parent="." instance=ExtResource("19_04lqs")]
+transform = Transform3D(0.204301, 0, 0, 0, 0.204301, 0, 0, 0, 0.204301, 8.82168, 1, 1.65517)
+
+[node name="plot6" parent="." instance=ExtResource("19_04lqs")]
+transform = Transform3D(0.204301, 0, 0, 0, 0.204301, 0, 0, 0, 0.204301, 9.09109, 1, 1.66261)
+
+[node name="plot7" parent="." instance=ExtResource("19_04lqs")]
+transform = Transform3D(0.204301, 0, 0, 0, 0.204301, 0, 0, 0, 0.204301, 9.3539, 1, 1.12376)
+
+[node name="plot8" parent="." instance=ExtResource("19_04lqs")]
+transform = Transform3D(0.204301, 0, 0, 0, 0.204301, 0, 0, 0, 0.204301, 9.35905, 1, 1.40154)
+
+[node name="plot9" parent="." instance=ExtResource("19_04lqs")]
+transform = Transform3D(0.204301, 0, 0, 0, 0.204301, 0, 0, 0, 0.204301, 9.35905, 1, 1.66261)
+
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 offset_left = -512.0
 offset_right = -472.0
