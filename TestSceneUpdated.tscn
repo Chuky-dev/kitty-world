@@ -1,4 +1,4 @@
-[gd_scene load_steps=156 format=3 uid="uid://045umwnh2vwu"]
+[gd_scene load_steps=155 format=3 uid="uid://045umwnh2vwu"]
 
 [ext_resource type="Shader" path="res://Scripts/Shader Scripts/WaterShader2.gdshader" id="1_qy38e"]
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="2_pt4xx"]
@@ -20,6 +20,27 @@
 [ext_resource type="Texture2D" uid="uid://cc83nut5h37dw" path="res://Assets/Models/House_0.png" id="18_ryh80"]
 [ext_resource type="PackedScene" uid="uid://bw1wpuir4sqec" path="res://Assets/Models/plot1.gltf" id="19_04lqs"]
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_t1yak"]
+viewport_path = NodePath("SubViewportContainer/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c68ix"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_t1yak")
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qu8sc"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_c68ix")
+size = Vector2(1000, 1000)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_51nls"]
+data = PackedVector3Array(50, 0, 50, -50, 0, 50, 50, 0, -50, -50, 0, 50, -50, 0, -50, 50, 0, -50)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_4o8fr"]
+height = 0.17
+radius = 0.1
+
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_40bep"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -37,43 +58,11 @@ ssil_radius = 4.0
 sdfgi_read_sky_light = false
 sdfgi_y_scale = 0
 fog_enabled = true
-fog_density = 0.012
+fog_light_energy = 1.85
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_luxwv"]
-viewport_path = NodePath("Water/SubViewport")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dbmni"]
-resource_local_to_scene = true
-albedo_texture = SubResource("ViewportTexture_luxwv")
-uv1_triplanar = true
-uv1_world_triplanar = true
-texture_filter = 0
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_qu8sc"]
-resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_dbmni")
-size = Vector2(1000, 1000)
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_51nls"]
-data = PackedVector3Array(50, 0, 50, -50, 0, 50, 50, 0, -50, -50, 0, 50, -50, 0, -50, 50, 0, -50)
-
-[sub_resource type="Environment" id="Environment_kqwcr"]
-
-[sub_resource type="World3D" id="World3D_cd4xf"]
-environment = SubResource("Environment_kqwcr")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_m0eab"]
-shader = ExtResource("1_qy38e")
-shader_parameter/WATER_COL = Color(0.12549, 0.454902, 0.980392, 1)
-shader_parameter/WATER2_COL = Color(0.0352941, 0.341176, 0.760784, 1)
-shader_parameter/FOAM_COL = Color(0.682353, 0.933333, 0.937255, 1)
-shader_parameter/distortion_speed = 2.0
-shader_parameter/tile = Vector2(5, 5)
-shader_parameter/wave_speed = 1.5
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_4o8fr"]
-height = 0.17
-radius = 0.1
+[sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_tevug"]
+frustum_focal_length = 15.0
+frustum_far = 79.62
 
 [sub_resource type="Animation" id="Animation_gsx0b"]
 resource_name = "Action_axe_down"
@@ -285,7 +274,6 @@ blend_point_4/node = SubResource("AnimationNodeAnimation_6law8")
 blend_point_4/pos = Vector2(-1, 0)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_mwg6b"]
-graph_offset = Vector2(-377.729, 144.326)
 nodes/BlendSpace2D/node = SubResource("AnimationNodeBlendSpace2D_85ayt")
 nodes/BlendSpace2D/position = Vector2(-133.333, 160)
 node_connections = [&"output", 0, &"BlendSpace2D"]
@@ -1670,35 +1658,25 @@ size = Vector3(2.15, 1, 1.03)
 [sub_resource type="BoxShape3D" id="BoxShape3D_bpkt0"]
 size = Vector3(2.435, 4.249, 2.355)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8ghwb"]
+shader = ExtResource("1_qy38e")
+shader_parameter/WATER_COL = Color(0.04, 0.38, 0.88, 1)
+shader_parameter/WATER2_COL = Color(0.04, 0.35, 0.78, 1)
+shader_parameter/FOAM_COL = Color(0.8125, 0.9609, 0.9648, 1)
+shader_parameter/distortion_speed = 2.0
+shader_parameter/tile = Vector2(5, 5)
+shader_parameter/wave_speed = 1.5
+
 [node name="Node3D" type="Node3D"]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_4iuh7")
-
 [node name="Water" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.8265, 0.179148, 0.0157256)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.9974, 0.179148, 0.0589779)
 mesh = SubResource("PlaneMesh_qu8sc")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Water"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Water/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_51nls")
-
-[node name="SubViewport" type="SubViewport" parent="Water"]
-own_world_3d = true
-world_3d = SubResource("World3D_cd4xf")
-transparent_bg = true
-canvas_item_default_texture_filter = 0
-gui_disable_input = true
-size = Vector2i(32, 32)
-
-[node name="ColorRect" type="ColorRect" parent="Water/SubViewport"]
-material = SubResource("ShaderMaterial_m0eab")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.462499, -0.706881, -0.535177, 0.179649, -0.665809, 0.724172, -0.868229, 0.238785, 0.434926, 0, 0, 0)
@@ -1720,6 +1698,8 @@ shape = SubResource("CylinderShape3D_4o8fr")
 
 [node name="Camera3D" type="Camera3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 0.891007, 0.453991, 0, -0.453991, 0.891007, -0.009, 0.534, 1.363)
+environment = SubResource("Environment_4iuh7")
+attributes = SubResource("CameraAttributesPhysical_tevug")
 
 [node name="Sprite3D" type="Sprite3D" parent="Player"]
 transform = Transform3D(0.796954, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
@@ -2355,6 +2335,25 @@ transform = Transform3D(0.204301, 0, 0, 0, 0.204301, 0, 0, 0, 0.204301, 8.82168,
 
 [node name="plot4" parent="." instance=ExtResource("19_04lqs")]
 transform = Transform3D(0.204301, 0, 0, 0, 0.204301, 0, 0, 0, 0.204301, 9.09109, 1, 1.40154)
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+offset_left = -512.0
+offset_right = -472.0
+offset_bottom = 40.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+canvas_item_default_texture_filter = 0
+size = Vector2i(16, 16)
+render_target_update_mode = 4
+
+[node name="ColorRect" type="ColorRect" parent="SubViewportContainer/SubViewport"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_8ghwb")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [connection signal="pressed" from="UI/InventoryPanel/Close_BTN" to="UI" method="_on_close_btn_pressed"]
 [connection signal="pressed" from="UI/TextureButton" to="Player" method="_on_texture_button_pressed"]
