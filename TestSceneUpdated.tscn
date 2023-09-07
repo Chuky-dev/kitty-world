@@ -17,7 +17,7 @@
 [ext_resource type="Script" path="res://Scripts/Tree.gd" id="15_r3222"]
 [ext_resource type="PackedScene" uid="uid://cd4a47jbpkkt3" path="res://Assets/Items/apple_item.tscn" id="16_vogom"]
 [ext_resource type="Script" path="res://Scripts/House.gd" id="17_urllq"]
-[ext_resource type="Texture2D" uid="uid://cc83nut5h37dw" path="res://Assets/Models/House_0.png" id="18_ryh80"]
+[ext_resource type="Texture2D" uid="uid://bu2qwq4esgugl" path="res://Assets/Models/House_1.png" id="17_wut6x"]
 [ext_resource type="PackedScene" uid="uid://bw1wpuir4sqec" path="res://Assets/Models/plot1.gltf" id="19_04lqs"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_t1yak"]
@@ -542,7 +542,7 @@ alpha_scissor_threshold = 0.05
 alpha_antialiasing_mode = 0
 cull_mode = 2
 vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("18_ryh80")
+albedo_texture = ExtResource("17_wut6x")
 texture_filter = 0
 texture_repeat = false
 
@@ -2358,7 +2358,7 @@ offset_bottom = 40.0
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 canvas_item_default_texture_filter = 0
-size = Vector2i(16, 16)
+size = Vector2i(32, 32)
 render_target_update_mode = 4
 
 [node name="ColorRect" type="ColorRect" parent="SubViewportContainer/SubViewport"]
